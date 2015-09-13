@@ -8,40 +8,21 @@
          function () {
            Android.onRenderingComplete();
        });
-      
-      
-      
+
+      function loadHtml() {
+        if(document) {
+            console.log("Setting inner html data");
+            document.body.innerHTML = Android.getHtmlData();
+         }
+         else
+            console.log("Document not ready yet");
+      }
 
     </script>
     <title>MathML Examples</title>
 </head>
-<body>
-<span class=\"definition nb_hidden clAnnotationDecoration\">
-A standardized code for
-representing
-      <span
-              class=\"inlineMath\" id=\"PWJDLT933186870\">
-        <math display=\"inline\">
-            <mrow>
-                <msub>
-                    <mi mathvariant=\"normal\">C</mi>
-                    <mrow>
-                        <mn>10</mn>
-                    </mrow>
-                </msub>
-                <msub>
-                    <mi mathvariant=\"normal\">H</mi>
-                    <mn>6</mn>
-                </msub>
-                <msub>
-                    <mi mathvariant=\"normal\">O</mi>
-                    <mn>3</mn>
-                </msub>
-            </mrow>
-        </math>
-      </span>
-a chemical element or compound
-</span>
+<body onload="loadHtml()">
+
 </body>
 </html>
 </html>

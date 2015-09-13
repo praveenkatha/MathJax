@@ -15,6 +15,33 @@ public class MainActivity extends AppCompatActivity {
     private WebView myWebView;
     private ProgressBar progressBar;
 
+    String data = "<span class=\\\"definition nb_hidden clAnnotationDecoration\\\">\n" +
+            "A standardized code for\n" +
+            "representing\n" +
+            "      <span\n" +
+            "              class=\\\"inlineMath\\\" id=\\\"PWJDLT933186870\\\">\n" +
+            "        <math display=\\\"inline\\\">\n" +
+            "            <mrow>\n" +
+            "                <msub>\n" +
+            "                    <mi mathvariant=\\\"normal\\\">C</mi>\n" +
+            "                    <mrow>\n" +
+            "                        <mn>10</mn>\n" +
+            "                    </mrow>\n" +
+            "                </msub>\n" +
+            "                <msub>\n" +
+            "                    <mi mathvariant=\\\"normal\\\">H</mi>\n" +
+            "                    <mn>6</mn>\n" +
+            "                </msub>\n" +
+            "                <msub>\n" +
+            "                    <mi mathvariant=\\\"normal\\\">O</mi>\n" +
+            "                    <mn>3</mn>\n" +
+            "                </msub>\n" +
+            "            </mrow>\n" +
+            "        </math>\n" +
+            "      </span>\n" +
+            "a chemical element or compound\n" +
+            "</span>";
+
     class MathJaxCallBackInterface {
 
         MathJaxCallBackInterface(Context c) {
@@ -30,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
             });
 
         }
+
+        @JavascriptInterface
+        public String  getHtmlData() {
+            return data;
+        }
     }
 
     @Override
@@ -43,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         WebSettings webSettings = myWebView.getSettings();
         myWebView.addJavascriptInterface(new MathJaxCallBackInterface(this), "Android");
         webSettings.setJavaScriptEnabled(true);
+        myWebView.loadUrl("javascript:loadHtml()");
     }
 
     private void showWebView(boolean show) {
