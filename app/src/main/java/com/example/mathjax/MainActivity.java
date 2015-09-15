@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
             "a chemical element or compound\n" +
             "</span>";
 
+    String imgData = "<div id='imagecontainer'>" +
+            "           <img id='flashcard_image' " +
+            "src='http://www.gettyimages.co.uk/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg'>" +
+            "</div>";
+
+    String textData = "Flashcard";
+
     class MathJaxCallBackInterface {
 
         MathJaxCallBackInterface(Context c) {
@@ -59,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @JavascriptInterface
-        public String  getHtmlData() {
-            return data;
+        public String getHtmlData() {
+            return textData;
         }
     }
 

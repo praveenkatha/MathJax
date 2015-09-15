@@ -2,6 +2,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <style>
+        img {
+        width: 100%;
+        }
+    </style>
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
     <script>
       MathJax.Hub.Register.StartupHook("End",
@@ -12,16 +17,18 @@
       function loadHtml() {
         if(document) {
             console.log("Setting inner html data");
-            document.body.innerHTML = Android.getHtmlData();
+            document.body.innerHTML = "<center>" + Android.getHtmlData() + "</center>";
          }
          else
             console.log("Document not ready yet");
       }
 
+
+
     </script>
     <title>MathML Examples</title>
 </head>
-<body onload="loadHtml()">
+<body bgcolor="#E6E6FA" onload="loadHtml()">
 
 </body>
 </html>
