@@ -6,6 +6,7 @@ import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import android.widget.Toast;
 public class ImageButtonActivity extends AppCompatActivity implements View.OnTouchListener {
 
 
-    private View btn;
+    private ViewGroup btn;
     private TextView quizTv;
     private GestureDetector gestureDetector;
 
@@ -22,13 +23,22 @@ public class ImageButtonActivity extends AppCompatActivity implements View.OnTou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_button_actvity);
 
-        btn = findViewById(R.id.btn);
+        btn = (ViewGroup) findViewById(R.id.btn);
         quizTv = (TextView) findViewById(R.id.tv_quiz_option_text);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ImageButtonActivity.this, "hello", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(ImageButtonActivity.this, "long click", Toast.LENGTH_SHORT).show();
+                return false;
             }
         });
 
@@ -58,8 +68,16 @@ public class ImageButtonActivity extends AppCompatActivity implements View.OnTou
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            btn.performClick();
+            if(btn.isClickable())
+                btn.performClick();
             return super.onSingleTapUp(e);
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            super.onLongPress(e);
+            if(btn.isClickable())
+                btn.performLongClick();
         }
 
         @Override
