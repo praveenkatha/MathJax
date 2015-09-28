@@ -1,7 +1,9 @@
 package com.example.mathjax;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -17,6 +19,7 @@ public class ImageButtonActivity extends AppCompatActivity implements View.OnTou
     private ViewGroup btn;
     private TextView quizTv;
     private GestureDetector gestureDetector;
+    public final static int SCROLL_BOTTOM_PADDING = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +91,20 @@ public class ImageButtonActivity extends AppCompatActivity implements View.OnTou
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
 
-            int top = 0;
-            int bot = quizTv.getLineBounds(quizTv.getLineCount() - 1, null);
+            Log.d("Text View","Pad bot: "+quizTv.getPaddingBottom());
+            Log.d("Text View","Pad top: "+quizTv.getPaddingTop());
+
+
+            Rect bounds = new Rect();
+
+            int first_line_bot = quizTv.getLineBounds(0, bounds);
+            int first_line_top = bounds.top;
+
+            Log.d("Text View","First line bot: "+ first_line_bot);
+            Log.d("Text View","First line top: "+ first_line_top);
+
+            int top = bounds.top;
+            int bot = quizTv.getLineBounds(quizTv.getLineCount() - 1, null) + SCROLL_BOTTOM_PADDING;
             int actual_ht = bot - top;
             int visible_ht = Math.min(quizTv.getHeight() - quizTv.getPaddingBottom() - quizTv.getPaddingTop(), actual_ht);
 
